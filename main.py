@@ -1,4 +1,6 @@
 import pygame
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 from constants import *
 from logger import log_state
 from player import *
@@ -14,6 +16,8 @@ def main():
     # Grouping templates
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+    asteroid_field = pygame.sprite.Group()
 
     # Setting FPS and player movements
     clock = pygame.time.Clock()
@@ -21,6 +25,9 @@ def main():
     x = SCREEN_WIDTH / 2
     y = SCREEN_HEIGHT / 2
     Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = updatable
+    field = AsteroidField()
     player = Player(x, y)
 
     # Game Looping
@@ -32,7 +39,7 @@ def main():
 
         pygame.Surface.fill(screen, (0,0,0))
 
-        # Grouping objects for game loop 
+        # Grouping objects for game loop
         updatable.update(dt)
         for obj in drawable:
             obj.draw(screen)
