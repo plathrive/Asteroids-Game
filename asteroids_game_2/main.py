@@ -32,6 +32,8 @@ def main():
     while True:
         log_state()
         screen.fill("black")
+        
+        updatable.update(dt)
 
         for thing in drawable:
             thing.draw(screen)
@@ -39,8 +41,6 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-        
-        updatable.update(dt)
 
         for asteroid in asteroids:
             if player.collides_with(asteroid) == True:
@@ -53,7 +53,7 @@ def main():
                     log_event("asteroid_shot")
                     shot.kill()
                     asteroid.split()
-       
+        
         dt = clock.tick(60) / 1000
         print(dt)
         pygame.display.flip()
