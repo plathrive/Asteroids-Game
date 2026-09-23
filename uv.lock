@@ -2,10 +2,27 @@ version = 1
 revision = 3
 requires-python = ">=3.13"
 
+[manifest]
+members = [
+    "asteroids-game",
+    "asteroids-game-2",
+]
+
 [[package]]
 name = "asteroids-game"
 version = "0.1.0"
 source = { virtual = "." }
+dependencies = [
+    { name = "pygame" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "pygame", specifier = "==2.6.1" }]
+
+[[package]]
+name = "asteroids-game-2"
+version = "0.1.0"
+source = { virtual = "asteroids_game_2" }
 dependencies = [
     { name = "pygame" },
 ]
